@@ -1,11 +1,13 @@
 import 'dart:convert';
+import 'package:http/http.dart' as http;
 
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 
 import 'dart:async';
 
 class HomePage extends StatefulWidget {
+  final List currencies;
+  HomePage(this.currencies);
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -13,19 +15,6 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final List<MaterialColor> _colors = [Colors.blue, Colors.indigo, Colors.red];
   List currencies;
-
-  @override
-  void initState() async {
-    super.initState();
-
-    currencies = await getCurrencies();
-  }
-
-  Future<List> getCurrencies() async {
-    String currUrl = "https://api.coinmarketcap.com/v1/ticker/?limit=50";
-    http.Response response = await http.get(currUrl);
-    return jsonDecode(response.body);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,9 +30,9 @@ class _HomePageState extends State<HomePage> {
     return new Container(
       child: new Flexible(
         child: new ListView.builder(
-          itemCount: currencies.length,
+          itemCount: widget.currencies.length,
           itemBuilder: (BuildContext context, int index) {
-            final Map currency = currencies[index];
+            final Map currency = widget.currencies[index];
             final MaterialColor color = _colors[index % _colors.length];
 
             return _getListItemUi(currency, color);
