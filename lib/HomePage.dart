@@ -1,9 +1,4 @@
-import 'dart:convert';
-import 'package:http/http.dart' as http;
-
 import 'package:flutter/material.dart';
-
-import 'dart:async';
 
 class HomePage extends StatefulWidget {
   final List currencies;
@@ -30,7 +25,7 @@ class _HomePageState extends State<HomePage> {
     return new Container(
       child: new Flexible(
         child: new ListView.builder(
-          itemCount: widget.currencies.length,
+          itemCount: widget.currencies == null ? 0 : widget.currencies.length,
           itemBuilder: (BuildContext context, int index) {
             final Map currency = widget.currencies[index];
             final MaterialColor color = _colors[index % _colors.length];
