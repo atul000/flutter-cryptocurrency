@@ -1,6 +1,6 @@
 # cryptocurrency
 
-A new Flutter project.
+![flutter](flutter.png "flutter")
 
 ## Getting Started
 
