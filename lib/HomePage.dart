@@ -23,18 +23,21 @@ class _HomePageState extends State<HomePage> {
 
   Widget _cryptoWidget() {
     return new Container(
-      child: new Flexible(
-        child: new ListView.builder(
-          itemCount: widget.currencies == null ? 0 : widget.currencies.length,
-          itemBuilder: (BuildContext context, int index) {
-            final Map currency = widget.currencies[index];
-            final MaterialColor color = _colors[index % _colors.length];
+        child: new Column(
+      children: <Widget>[
+        new Flexible(
+          child: new ListView.builder(
+            itemCount: widget.currencies == null ? 0 : widget.currencies.length,
+            itemBuilder: (BuildContext context, int index) {
+              final Map currency = widget.currencies[index];
+              final MaterialColor color = _colors[index % _colors.length];
 
-            return _getListItemUi(currency, color);
-          },
+              return _getListItemUi(currency, color);
+            },
+          ),
         ),
-      ),
-    );
+      ],
+    ));
   }
 
   ListTile _getListItemUi(Map currency, MaterialColor color) {
