@@ -56,23 +56,23 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  // Widget _getSubtitleText(String priceUSD, String percentageChange) {
-  //   TextSpan priceTextWidget = new TextSpan(
-  //       text: "\$$priceUSD\n", style: new TextStyle(color: Colors.black));
-  //   String percentageChangeText = "1 hour: $percentageChange%";
-  //   TextSpan percentageChangeTextWidget;
+  Widget _getSubtitleText(String priceUSD, String percentageChange) {
+    TextSpan priceTextWidget = new TextSpan(
+        text: "\$$priceUSD\n", style: new TextStyle(color: Colors.black));
+    String percentageChangeText = "1 hour: $percentageChange%";
+    TextSpan percentageChangeTextWidget;
 
-  //   if (double.parse(percentageChange) > 0) {
-  //     percentageChangeTextWidget = new TextSpan(
-  //         text: percentageChangeText,
-  //         style: new TextStyle(color: Colors.green));
-  //   } else {
-  //     percentageChangeTextWidget = new TextSpan(
-  //         text: percentageChangeText, style: new TextStyle(color: Colors.red));
-  //   }
-  //   return new RichText(
-  //     text:
-  //         new TextSpan(children: [priceTextWidget, percentageChangeTextWidget]),
-  //   );
-  // }
+    if (double.parse(percentageChange) > 0) {
+      percentageChangeTextWidget = new TextSpan(
+          text: percentageChangeText,
+          style: new TextStyle(color: Colors.green));
+    } else {
+      percentageChangeTextWidget = new TextSpan(
+          text: percentageChangeText, style: new TextStyle(color: Colors.red));
+    }
+    return new RichText(
+      text:
+          new TextSpan(children: [priceTextWidget, percentageChangeTextWidget]),
+    );
+  }
 }
