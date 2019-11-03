@@ -16,5 +16,6 @@ class ProdCryptoRepository implements CryptoRepository {
       throw new FetchDataException(
           "An error occured : [Status Code : $statusCode]");
     }
+    return responseBody.map((c) => Crypto.fromMap(c)).toList();
   }
 }

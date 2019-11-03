@@ -1,19 +1,16 @@
-import 'dart:convert';
+import 'package:cryptocurrency/dependency_injection.dart';
 import 'package:flutter/foundation.dart';
-import 'package:http/http.dart' as http;
 
 import 'package:flutter/material.dart';
 
 import 'HomePage.dart';
 
 void main() async {
-  List currencies = await getCurrencies();
-  runApp(MyApp(currencies));
+  Injector.configure(Flavour.PROD);
+  runApp(new MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  final List _currencies;
-  MyApp(this._currencies);
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -22,13 +19,7 @@ class MyApp extends StatelessWidget {
           primaryColor: defaultTargetPlatform == TargetPlatform.iOS
               ? Colors.blue[400]
               : null),
-      home: new HomePage(_currencies),
+      home: new HomePage(),
     );
   }
-}
-
-Future<List> getCurrencies() async {
-  String currUrl = "https://api.coinmarketcap.com/v1/ticker/?limit=50";
-  http.Response response = await http.get(currUrl);
-  return jsonDecode(response.body);
 }
